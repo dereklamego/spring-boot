@@ -1,23 +1,31 @@
 package com.derek.projeto1.entity;
 import java.util.Set;
 import javax.persistence.*; //asteriscos para importar tudo da jpa
+import org.springframework.data.mongodb.core.mapping.Document;
 
-//anotação para informar que uma classe representa uma entidade e seus objetos devem ser persistidos no banco de dados.. OBS: Não ficou claro a diferença entre @table e @entity
-@Entity 
+@Document 
 public class User {
-    @Id  //anotação para informar que o atributo é um id
-    @GeneratedValue(strategy = GenerationType.AUTO) //anotação de auto increment desse id
-    private Long id;
+    @Id 
+    private String id;
     private String name;
     private String email;
 
     @ManyToMany
     private Set<Role> roles;
 
-    public Long getId() {
+    public User() {
+
+    }
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public String getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
